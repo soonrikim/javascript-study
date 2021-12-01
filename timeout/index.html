@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ルパン三世クイズ</title> 
+    <style>
+        body{
+            background-color: yellow;
+            background-image: url(https://lupin-pt6.com/wp-content/themes/lupin/images/mv.png);
+            background-repeat: no-repeat;
+            background-size: 40%;
+            text-align: center;
+            padding-top: 50px;
+            line-height: 35px;
+            font-size: larger;
+        }
+    </style>
+<script language="javascript">
+var delay=10; //時間設定
+var correctAnswers = new Array("a", "a", "b", "a", "c"); //正解
+
+var q_num=1;
+var timer;
+var layer;
+var clock=delay;
+var score=0;
+
+function show_question(){
+	if (layer=eval("document.all.question"+q_num)){
+		layer.style.display="inline";
+		document.all.timeLeft.innerHTML=clock;
+		hide_question();
+	} else {
+		document.all.timeLeft.innerHTML=0;
+		document.all.quizScore.innerHTML="あなたは "+(q_num-1)+"問題の中で "+score+"個を合わせました。";
+		document.all.quizScore.style.display="inline";
+	}
+}
+
+function hide_question(){
+	if (clock>0) {
+		document.all.timeLeft.innerHTML=clock;
+		clock--;
+		timer=setTimeout("hide_question()",1000);
+	} else {
+		clearTimeout(timer);
+		document.all.answerBoard.innerHTML=" ";
+		clock=delay;
+		layer.style.display="none";
+		q_num++;
+		show_question();
+	}
+}
+
+function check_answer(answer){
+	if (correctAnswers[q_num-1]==answer){
+		score++;
+		document.all.answerBoard.innerHTML="<font color=blue><b>正解です。</b></font>";
+	} else {
+		document.all.answerBoard.innerHTML="<font color=red><b>ブー！不正解です。</b></font>";
+	}
+	clock=0;
+	clearTimeout(timer);
+	timer=setTimeout("hide_question()",700);
+}
+
+window.onload=show_question;
+</script>
+</head>
+
+<body>
+
+  
+
+制限時間 : <B><span id="timeLeft"></span></B> 秒<br>
+<br>
+<div id="answerBoard"> </div>
+<br>
+
+<div id="question1" style="display:none">
+	<b>1. ルパン三世の原作者のペンネームといえば？</b><br>
+	<a href="javascript:void(0)" onclick="check_answer('a')"
+        >a) モンキー・パンチ</a
+      ><br />
+      <a href="javascript:void(0)" onclick="check_answer('b')">b) ビーズキン</a
+      ><br />
+      <a href="javascript:void(0)" onclick="check_answer('c')">c) ジャロド</a
+      ><br />
+      <a href="javascript:void(0)" onclick="check_answer('d')">d) アイソック</a
+      ><br />
+</div>
+
+<div id="question2" style="display:none">
+    <b>2. 時には仲間、時には敵にもなるルパン三世のヒロインといえば？</b><br />
+    <a href="javascript:void(0)" onclick="check_answer('a')">a) 峰不二子</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('b')">b) 次元 大介</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('c')">c) 銭形 幸一</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('d')"
+      >d) 石川 五 右 衛門</a
+    ><br />
+</div>
+
+<div id="question3" style="display:none">
+    <b>3. ルパン三世の祖父である大怪盗といえば？</b><br />
+    <a href="javascript:void(0)" onclick="check_answer('a')"
+      >a) ドルシ・ルパン</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('b')"
+      >b) アルセーヌ・ルパン</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('c')"
+      >c) キャサリン・ルパン</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('d')"
+      >d) ミホク・ルパン</a
+    ><br />
+</div>
+
+<div id="question4" style="display:none">
+    <b>4. 2013年12月に公開された映画等でコラボをした漫画(アニメ)といえば？</b
+        ><br />
+        <a href="javascript:void(0)" onclick="check_answer('a')"
+          >a) 名探偵コナン</a
+        ><br />
+        <a href="javascript:void(0)" onclick="check_answer('b')">b) 七つの大罪</a
+        ><br />
+        <a href="javascript:void(0)" onclick="check_answer('c')"
+          >c)ワールドトリガー</a
+        ><br />
+        <a href="javascript:void(0)" onclick="check_answer('d')">d) 聲の形</a
+        ><br />
+</div>
+
+<div id="question5" style="display:none">
+    <b>5. Part5の舞台になる国は？</b><br />
+    <a href="javascript:void(0)" onclick="check_answer('a')">a) グリス</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('b')">b) アメリカ</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('c')">c) プランス</a
+    ><br />
+    <a href="javascript:void(0)" onclick="check_answer('d')">d) ロシア</a
+    ><br />
+</div>
+
+<div id="quizScore" style="display:none">
+</div>
+<audio autoplay="autoplay" hidden="hidden"> <source src="LUPIN Ⅲ（08’Hard & Beat Ver）.mp3" type="audio/mpeg"> </audio>
+
+
+</body>
+</html>
+
